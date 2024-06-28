@@ -1,25 +1,28 @@
 'use strict';
-require('dotenv').config();
+require('dotenv').config(); // sử dung file môi trường
 
 const express = require('express');
-const app = express();
-const expressHandlebars = require('express-handlebars');
-const session = require('express-session');
-const redisStore = require('connect-redis').default;
+const app = express(); // sử dụng express package
+const expressHandlebars = require('express-handlebars'); // sử dung express-handlerbars
+const session = require('express-session'); // sử dụng session để lưu thông tin trong quá trình renders
+const redisStore = require('connect-redis').default; // sử dụng redis
 const { createClient } = require('redis');
 const redisClient = createClient({
     url: process.env.REDIS_URL,
 });
 redisClient.connect().catch(console.error);
+// redisClient.on('error', (err) => {
+//     console.error(err);
+// });
 const passport = require('./controllers/passport');
 const flash = require('connect-flash');
 const bodyParser = require('body-parser');
 const { ifEquals, ifContains, formatTime, select, selectIn, formatDate } = require('./controllers/handlebarsHelper');
-const port = process.env.PORT || 5000;
-const models = require('./models');
+const port = process.env.PORT || 5000; // get PORT từ file môi trường
+const models = require('./models'); // load toàn bộ table từ model folder
 const sequelize = require('sequelize');
 const Op = sequelize.Op;
-const { createPagination } = require('express-handlebars-paginate');
+const { createPagination } = require('express-handlebars-paginate'); // tạo pagination cho quá trình phân trang
 const cronJob = require('./controllers/cronjob');
 const multer = require('multer');
 const axios = require('axios');
@@ -40,6 +43,9 @@ app.engine(
         runtimeOptions: {
             allowProtoPropertiesByDefault: true,
         },
+        /**
+         * hàm hỗ trợ trong việc render layout
+         */
         helpers: {
             ifEquals,
             ifContains,
@@ -53,9 +59,14 @@ app.engine(
 );
 app.set('view engine', 'hbs');
 
+// trước khi
 app.get('/createTables', (req, res) => {
     let models = require('./models');
     models.sequelize.sync().then(() => {
+        /**
+         * Thêm search Index vào table Article
+         * nhằm sử dụng chưc năng full-text search
+         */
         models.Article.addSearchIndex();
         res.send('Table created!');
     });
@@ -102,7 +113,7 @@ app.use(
         saveUninitialized: false,
         cookie: {
             httpOnly: true,
-            maxAge: 20 * 60 * 1000,
+            maxAge: 20 * 60 * 1000, // 20 minutes * 60s * 1000 mili-seconds
         },
     }),
 );
@@ -227,7 +238,6 @@ app.post('/userread', async (req, res) => {
 app.use('/admin', require('./routes/adminRouter'));
 app.use('/editor', require('./routes/editorRouter'));
 app.use('/writer', require('./routes/writerRouter'));
-// app.use("/articles", require("./routes/articlesRouter"));
 app.use('/', require('./routes/indexRouter'));
 app.use('/users', require('./routes/authRouter'));
 app.use('/users', require('./routes/usersRouter'));

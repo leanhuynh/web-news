@@ -22,6 +22,8 @@
 
 -   HTML, CSS
 
+-   PostgreSQL
+
 -   JWT
 
 -   Redis
@@ -47,6 +49,18 @@ npm install
 ```
 
 -   Cập nhật các giá trị trong file môi trường `.env`
+
+-   chạy trường trình, tạo database PosgreSQL
+
+```bash
+http://localhost:5000/createTables
+```
+
+-   Tạo dữ liệu trong database
+
+```bash
+sequelize db:seed:all
+```
 
 **Hình ảnh demo giao diện website**
 
