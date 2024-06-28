@@ -1,0 +1,86 @@
+<main class="main_manage">
+  <div class="container-fluid">
+    <div class="row g-0">
+      <div class="col-sm-3 col-md-2 sidenav">
+        <ul class="sidenav__list">
+          <li class="sidenav__link is-selected"><a href="/editor">Tất cả bài viết</a></li>
+          <li class="sidenav__link" id="posted"><a href="/editor?status=posted">Đã đăng</a></li>
+          <li class="sidenav__link" id="approved"><a href="/editor?status=approved">Đã duyệt & chờ đăng</a></li>
+          <li class="sidenav__link" id="pending"><a href="/editor?status=pending">Chờ duyệt</a></li>
+          <li class="sidenav__link" id="rejected"><a href="/editor?status=rejected">Đã từ chối</a></li>
+        </ul>
+      </div>
+
+      <div class="col main">
+        <div class="row">
+          <div class="col">
+            <h3>Tất cả bài viết</h3>
+          </div>
+          <div class="col d-flex justify-content-end">
+            <div class="search-container">
+              <form action="" method="GET">
+                <input type="hidden" name="status" value="{{status}}">
+                <input type="text" placeholder="Search.." name="keyword" value="{{keyword}}">
+                <button type="submit"><i class="bi bi-search"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a href="{{originalUrl}}">
+                  <button class="nav-link active" id="all-tab" data-bs-toggle="tab"
+                    data-bs-target="#all" type="button" role="tab" aria-controls="all"
+                    aria-selected="true">Tất cả</button>
+                </a>
+              </li>
+              {{#each assigned}}
+              <li class="nav-item" role="presentation">
+                <a href="{{../originalUrl}}&subcategory={{id}}">
+                  <button class="nav-link" id="tab-{{id}}" data-bs-toggle="tab"
+                    data-bs-target="#agriculture" type="button" role="tab" aria-controls="agriculture"
+                    aria-selected="true">{{name}}</button>
+                </a>
+              </li>
+              {{/each}}
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div class="tab-pane active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                <table table-striped border-success data-toggle="table">
+                  <thead>
+                    <tr>
+                      <th data-field="title">Tiêu đề</th>
+                      <th data-field="date">Ngày viết</th>
+                      <th data-field="status">Tình trạng</th>
+                      <th data-field="reviewer">Người duyệt</th>
+                      <th data-field="comment">Nhận xét</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {{#each articles}}
+                    <tr class="table-row-clickable" data-status="{{status}}" data-ID="{{id}}">
+                      <td><a href="/editor/censor?id={{id}}" style="text-decoration: none;">{{name}}</a></td>
+                      <td>{{formatTime updatedAt "DD.MM.YYYY HH:mm"}}</td>
+                      <td>{{status}}</td>
+                      <td>{{editor.name}}</td>
+                      <td>{{reviewComment}}</td>
+                    </tr>
+                    {{/each}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="/js/editor.js"></script>

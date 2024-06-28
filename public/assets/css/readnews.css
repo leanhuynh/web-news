@@ -1,0 +1,128 @@
+.card-title,
+h4,
+h5,
+h6,
+p.abstract {
+    font-family: serif;
+    font-weight: bold;
+}
+
+.card-title {
+    font-size: 20px;
+}
+
+.card-text,
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* author, time, like, comment */
+.author__time {
+    display: flex;
+    flex-direction: row;
+}
+
+.like__comment {
+    display: flex;
+    flex-direction: row;
+}
+
+.like {
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+}
+
+/* customize the button, p, border */
+.like button,
+.comment button {
+    border-color: white;
+    border-width: 0px;
+    background-color: white;
+    height: 10px;
+    margin-right: 5px;
+}
+
+.author {
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.time {
+    margin-right: 15px;
+}
+
+/* new */
+.img__new {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.card__img__latest__news {
+    height: 300px;
+}
+
+/* content */
+p.content {
+    margin-top: 3rem;
+}
+
+/* read commment */
+.card__comment {
+    display: flex;
+    flex-direction: row;
+    flex-basis: auto;
+    border-color: white;
+    margin: 2rem;
+}
+
+.card-body--comment {
+    flex-grow: 1;
+    box-sizing: border-box;
+    width: 90%;
+    margin-right: 1rem;
+}
+
+.comment__content {
+    background-color: #D3D3D3;
+    border-radius: 12px;
+    padding: 10px;
+    width: fit-content;
+}
+
+.personal__img img {
+    display: block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-top: 3rem;
+    background-color: red;
+}
+
+.like__comment--time {
+    margin-left: 3rem;
+}
+
+.modal--content {
+    overflow-y: scroll;
+    max-height: 50rem;
+}
+
+.modal--content::-webkit-scrollbar {
+    width: 2px; /* Chiều rộng thanh cuộn */
+}
+
+.modal--content::-webkit-scrollbar-track {
+    background-color: transparent; /* Màu nền của thanh cuộn */
+}
+
+.modal--content::-webkit-scrollbar-thumb {
+    background-color: #ccc; /* Màu của thanh cuộn */
+}

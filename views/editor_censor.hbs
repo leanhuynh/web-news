@@ -1,0 +1,73 @@
+    <main >
+        <div class="container-fluid main_function">
+            <div class="row">
+                {{#with article}}
+                <div class="col-9 maincol">                    
+                    <button class="button_back" onclick="history.back()"><i class="bi bi-arrow-left"
+                            style="font-size: 25px;"></i></button>
+                    <h3 class="body__title">Duyệt bài viết</h3><br />
+
+                    <div class="article">
+                        <div class="article__category">{{SubCategories.Category.name}} > {{SubCategories.name}}</div>
+                        <h2 class="article__title" >{{name}}</h2>
+                        <div class="row article__info">
+                            <div class="col">
+                                <h6><img class="article__info__author" src="{{author.avatar}}" alt="avatar">
+                                    {{author.name}}</h6>
+                            </div>
+                            <div class="col d-flex justify-content-end">
+                                <text class="article__info__time">{{formatTime updatedAt "DD.MM.YYYY HH:mm"}}</text>
+                            </div>
+                        </div>
+                        <div class="article__summary">{{description}}</div>
+                        <div class="article__content">{{{content}}}</div>
+                    </div>
+                    
+                </div>
+
+                <div class="col-3 sidecol">
+                    <form id="form1" action="/editor/censor" method="post" style="margin: 0;">
+                        <input type="hidden" id="input_id" name="id" form="form1">
+
+                        <label for="input_comment">Nhận xét</label>
+                        <textarea id="input_comment" cols="30" rows="6" style="width: 100%; padding: 5px 10px;" name="reviewComment" form="form1"></textarea>
+
+                        <label >Ảnh đại diện bài viết</label><br/>
+                        <input form="form1" id="input_post_avatar_link" type="text" hidden value="{{imgCover}}"
+                            name="imgCover" disabled/>
+                        <a href="{{imgCover}}"><img id="blah" src="{{imgCover}}" alt="your image" style="width: 100%;"/></a><br />
+
+
+                        <label for="input_cat1">Chuyên mục cấp 1</label><br />
+                        <select class="category_l1" id="input_cat1" form="form1" name="category" disabled>
+                            <option value="{{SubCategories.Category.id}}">{{SubCategories.Category.name}}</option>
+                        </select><br />
+
+                        <label for="input_cat2">Chuyên mục cấp 2</label><br />
+                        <select class="category_l2" id="input_cat2" form="form1" name="subcategory" disabled>
+                            <option value="{{Subcategories.id}}">{{SubCategories.name}} </option>
+                        </select><br />
+
+                        <label>Danh sách nhãn</label>
+                        <ul style="list-style-type: circle; margin-bottom: 2px;">
+                            {{#each ../selectedTags}}
+                            <li style="margin-left: 20px;">{{name}}</li>
+                            {{/each}}
+                        </ul>
+
+                        <label for="time">Thời điểm xuất bản</label><br />
+                        <input type="datetime-local" id="time" name="approveTime">
+                    </form>
+
+                    <div class="submit-buttons__container">
+                        <button form="form1" type="submit" id="approve-button" name="status" value="approved">Phê duyệt</button>
+                        <button form="form1" type="submit" id="reject-button" name="status" value="rejected">Từ chối</button>
+                    </div>
+
+                </div>
+                {{/with}}
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/editor_censor.js"></script>

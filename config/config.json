@@ -1,0 +1,35 @@
+{
+    "development": {
+        "username": "news_01",
+        "password": "QJ7NiRb6z2FUFFlKLLkocvZLuixZzE2P",
+        "database": "news_01",
+        "host": "dpg-cpv1fj5umphs73c44210-a.singapore-postgres.render.com",
+        "dialect": "postgres",
+        "dialectOptions": {
+            "ssl": {
+                "require": true,
+                "rejectUnauthorized": false
+            }
+        }
+    },
+    "test": {
+        "username": "news_01",
+        "password": "postgres",
+        "database": "news",
+        "host": "localhost",
+        "dialect": "postgres"
+    },
+    "production": {
+        "username": "news_01",
+        "password": "QJ7NiRb6z2FUFFlKLLkocvZLuixZzE2P",
+        "database": "news_01",
+        "host": "dpg-cpv1fj5umphs73c44210-a.oregon-postgres.render.com",
+        "dialect": "postgres",
+        "dialectOptions": {
+            "ssl": {
+                "require": true,
+                "rejectUnauthorized": false
+            }
+        }
+    }
+}

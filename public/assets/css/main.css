@@ -1,0 +1,163 @@
+.main {
+  padding-top: 60px;
+}
+
+.container-main {
+  display: flex;
+}
+
+.sidebar-container {
+  position: relative;
+  max-width: 100px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+}
+
+.sidebar__wrapper {
+  --width: 96px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  left: 0;
+  padding: 0 8px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 60px;
+  width: var(--width);
+  z-index: 8;
+}
+
+.sidebar__list {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.sidebar__item {
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16px;
+  color: #404040;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 72px;
+  justify-content: center;
+  margin-top: 4px;
+  min-width: 75px;
+}
+.sidebar__item:hover {
+  background-color: #c3dced;
+  color: #1a1a1a;
+}
+
+.sidebar__item svg {
+  font-size: 1.8rem;
+  width: 30px;
+  height: 30px;
+}
+
+.sidebar__active {
+  background-color: #c3dced;
+  color: #1a1a1a;
+}
+
+.sidebar__item-have-child {
+  position: relative;
+  transition: margin-top 0.3s;
+}
+.sidebar__item-have-child::after {
+  position: absolute;
+  right: -7px;
+  top: 5px;
+  width: 15px;
+  height: 87%;
+  content: "";
+}
+
+.sidebar__list-child {
+  position: absolute;
+  top: 3px;
+  left: 80px;
+  background-color: #d4e6f2;
+
+  border-radius: 10px;
+  border: 1px solid #66ccf4;
+  padding: 5px;
+  min-width: 200px;
+
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 100;
+}
+.sidebar__item-have-child i {
+  position: absolute;
+  top: 10px;
+  left: 61px;
+
+  font-size: 2rem;
+  line-height: 2.4rem;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 100;
+}
+#have-list-child {
+}
+#have-list-child:hover {
+  /* display: block; */
+}
+
+.sidebar__item-have-child:hover .sidebar__list-child,
+.sidebar__item-have-child:hover i {
+  display: block;
+  opacity: 1;
+}
+
+.sidebar__item-child {
+  width: 100%;
+  display: block;
+  margin: 5px 0;
+  padding-left: 5px;
+
+  font-size: 18px;
+  line-height: 32px;
+}
+.sidebar__item-child:hover {
+  background-color: #c3dced;
+  color: #1a1a1a;
+}
+
+.sidebar__item-child svg {
+  font-size: 1.8rem;
+  color: #404040;
+  width: 24px;
+  height: 24px;
+}
+
+.sidebar__active-child {
+  background-color: #c3dced;
+  color: #1a1a1a;
+}
+
+/*Computer*/
+@media (min-width: 992px) {
+}
+
+/*Tablet*/
+@media (min-width: 768px) and (max-width: 991px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/*Moblie*/
+@media (max-width: 767px) {
+  .sidebar {
+    display: none;
+  }
+}

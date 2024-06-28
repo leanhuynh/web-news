@@ -1,0 +1,463 @@
+<main class="main_manage">
+  <div class="container-fluid">
+    <div class="row g-0">
+      <div class="col-sm-3 col-md-2 sidenav">
+        <ul>
+          <li class="sidenav__link is-selected" id="category-manage"><a href="/admin">Quản lý chuyên mục</a></li>
+          <li class="sidenav__sublink is-selected" id="category-manage-1"><a href="/admin?type=category-manage-1">Chuyên
+              mục cấp 1</a></li>
+          <li class="sidenav__sublink " id="category-manage-2"><a href="/admin?type=category-manage-2">Chuyên mục cấp
+              2</a></li>
+          <li class="sidenav__link" id="tag-manage"><a href="/admin?type=tag-manage">Quản lý nhãn</a></li>
+          <li class="sidenav__link" id="article-manage"><a href="/admin?type=article-manage">Quản lý bài viết</a></li>
+          <li class="sidenav__link" id="user-manage"><a href="/admin?type=user-manage-1">Quản lý người dùng</a></li>
+          <li class="sidenav__sublink " id="user-manage-1"><a href="/admin?type=user-manage-1">Phóng viên</a></li>
+          <li class="sidenav__sublink " id="user-manage-2"><a href="/admin?type=user-manage-2">Biên tập viên</a></li>
+          <li class="sidenav__sublink " id="user-manage-3"><a href="/admin?type=user-manage-3">Người dùng</a></li>
+        </ul>
+      </div>
+
+      <div class="col main">
+        <div class="row">
+          <div class="col">
+            <h3>Quản lý chuyên mục</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" style="height: 39px;">
+            <div class="search-container float-start" style="margin: 5px 0;">
+              <form action="">
+                <input type="hidden" name="type" value="{{type}}">
+                <input type="text" placeholder="Search.." name="keyword" value="{{keyword}}">
+                <button type="submit"><i class="bi bi-search"></i></button>
+              </form>
+            </div>
+            <div class="button-container float-end">
+              <button id="add-button" type="button" class="bg-success" data-bs-toggle="modal" data-bs-target="#exampleModal0"
+                title="Chức năng Thêm (một dòng dữ liệu)" data-bs-function="Thêm"><i
+                  class="bi bi-plus-circle"></i></i></button>
+              <button id="remove-button" type="button" class="bg-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                title="Chức năng Xóa (một dòng dữ liệu)" data-bs-function="Xóa"><i class="bi bi-trash"></i></button>
+              <button id="modify-button" type="button" class="bg-warning" data-bs-toggle="modal" data-bs-target="#exampleModal2"
+                title="Chức năng Sửa (một số thuộc tính trong một dòng dữ liệu)" data-bs-function="Cập nhật"><i
+                  class="bi bi-pencil"></i></button>
+              <input id="input-type" type="hidden" name="type" form="form1">
+              <input class="input-url" type="hidden" name="originalUrl" form="form1">
+              <!-- Modal Them -->
+              <div class="modal fade" id="exampleModal0" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel"></h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form1" action="/admin/add" method="post">
+                        <div class="modal-body__add__name mb-3" style="display: none;">
+                          <label for="add__name" class="col-form-label">Nhập tên</label>
+                          <input type="text" class="form-control" id="add__name" name="name">
+                        </div>
+                        <div class="modal-body__add__image mb-3" style="display: none;">
+                          <label for="input_post_avatar">Ảnh đại diện</label><br />
+                          <input id="input_post_avatar" type="file" accept="image/*" />
+                          <input form="form1" id="input_post_avatar_link" type="text" hidden value="https://i.imgur.com/CFc1day.jpg" name="iconLink" />
+                          <input form="form1" id="input_post_avatar_deleteHash" type="text" hidden name="iconDeleteHash" />
+                        </div>
+                        <div class="modal-body__add__email mb-3" style="display: none;">
+                          <label for="add__email" class="col-form-label">Nhập email</label>
+                          <input type="email" class="form-control" id="add__email" name="email">
+                        </div>
+                        <div class="modal-body__add__cat1 mb-3" style="display: none;">
+                          <label for="input_cat1">Chuyên mục cấp 1</label><br />
+                          <select class="category_l1" id="input_cat1" form="form1" name="category">                
+                              {{#each cat1}}                    
+                              <option value="{{id}}">{{name}}</option>
+                              {{/each}}
+                          </select>
+                        </div>
+                        <div class="modal-body__add__cat2 mb-3" style="display: none;">
+                          <label for="input_tags">Danh sách chuyên mục phân công</label>
+                          <label id="input_tags" style="font-size: 1rem; margin: 0;">
+                              <input mbsc-input id="demo-multiple-select-input1" placeholder="Please re-select..."
+                                  data-dropdown="true" data-input-style="outline" data-label-style="stacked" data-tags="true" form="form1" name="cat2"/>
+                          </label>
+                          <select id="demo-multiple-select1" multiple>
+                              {{#each cat2}}
+                              <option value="{{id}}">{{name}}</option>
+                              {{/each}}
+                          </select>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                      <button form="form1" type="submit" class="btn btn-primary px-3" data-bs-dismiss="modal">Lưu</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal Xoa -->
+              <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                     Bạn chưa chọn dòng dữ liệu cần xóa.
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                      
+                      <input id="input-type2" type="hidden" name="type" form="form2">
+                      <input class="input-url" type="hidden" name="originalUrl" form="form2">
+                      <input id="input-name" type="hidden" name="name" form="form2">
+                      <button type="submit" class="btn btn-primary px-3" data-bs-dismiss="modal" form="form2">Xác nhận</button>
+                      <form id="form2" action="/admin/delete" method="post"></form>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal Cap nhat -->
+              <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="form3" action="/admin/modify" method="post">
+                        <div class="modal-body__modify__premium mb-3" style="display: none;">
+                          Bạn chưa chọn dòng dữ liệu cần cập nhật.
+                          <label for="category-add"></label>
+                          <div class="input-group mb-3">
+                            <input type="number" class="form-control" placeholder="Nhập số ngày gia hạn"
+                              aria-label="Recipient's username" aria-describedby="basic-addon2" name="numOfPremDay" form="form3">
+                            <span class="input-group-text" id="basic-addon2">ngày</span>
+                          </div>
+                        </div>
+                        <div class="modal-body__modify__cat2 mb-3" style="display: none;">
+                          Bạn chưa chọn dòng dữ liệu cần cập nhật.
+                          <label for="input_tags"></label>
+                          <label id="input_tags" style="font-size: 1rem; margin: 0;">
+                              <input mbsc-input id="demo-multiple-select-input" placeholder="Please re-select..."
+                                  data-dropdown="true" data-input-style="outline" data-label-style="stacked" data-tags="true" form="form3" name="cat2"/>
+                          </label>
+                          <select id="demo-multiple-select" multiple>
+                              {{#each cat2}}
+                              <option value="{{id}}">{{name}}</option>
+                              {{/each}}
+                          </select>
+                        </div>
+                        <div class="modal-body__modify__article mb-3" style="display: none;">
+                          <span class="modal-body__modify__article__message">Bạn chưa chọn dòng dữ liệu cần cập nhật.</span><b class="modal-body__modify__article__title"></b><br/>
+                          <input class="form-check-input" type="checkbox" name="premium" form="form3" id="flexCheckDefault">
+                          <label class="form-check-label" for="flexCheckDefault">Bài viết Premium</label>
+                        </div>
+                        <input id="input-type3" type="hidden" name="type" form="form3">
+                        <input class="input-url" type="hidden" name="originalUrl" form="form3">
+                        <input id="input-id" type="hidden" name="id" form="form3">
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                      <button form="form3" type="submit" class="btn btn-primary px-3" data-bs-dismiss="modal">Lưu</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <!-- Quản lý bài viết -->
+            <div class="manage-table" id="article-manage-table">
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a href="{{originalUrl}}">
+                    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all"
+                      type="button" role="tab" aria-controls="all" aria-selected="true">Tất cả</button>
+                  </a>
+                </li>
+                {{#each cat2}}
+                <li class="nav-item" role="presentation">
+                  <a href="{{../originalUrl}}&subcategory={{id}}">
+                    <button class="nav-link" id="tab-{{id}}" data-bs-toggle="tab" data-bs-target="#agriculture" type="button"
+                      role="tab" aria-controls="agriculture" aria-selected="true">{{name}}</button>
+                  </a>
+                </li>
+                {{/each}}
+                {{!-- <li class="nav-item" role="presentation">
+                  <a href="{{originalUrl}}&subcategory=2">
+                    <button class="nav-link" id="tab-2" data-bs-toggle="tab" data-bs-target="#seafood" type="button"
+                      role="tab" aria-controls="seafood" aria-selected="true">Hải sản</button>
+                  </a>
+                </li> --}}
+              </ul>
+
+              <div class="tab-content">
+                <div class="tab-pane active" id="world-topic-content" role="tabpanel" aria-labelledby="agriculture">
+                  <table table-striped border-success data-toggle="table">
+                    <thead>
+                      <tr>
+                        <th data-radio="true"></th>
+                        <th data-field="id">ID</th>
+                        <th data-field="title">Tiêu đề</th>
+                        {{!-- <th data-field="date">Ngày viết</th> --}}
+                        <th data-field="date">Thời điểm xuất bản</th>
+                        <th data-field="status">Tình trạng</th>
+                        <th data-field="reviewer">Người duyệt</th>
+                        <th data-field="comment">Nhận xét</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each articles}}
+                      <tr>
+                        <td></td>
+                        <td>{{id}}</td>
+                        <td>{{name}}</td>
+                        {{!-- <td>{{formatTime updatedAt "DD.MM.YYYY"}}</td> --}}
+                        <td>{{formatTime approve "DD.MM.YYYY HH:mm:ss"}}</td>
+                        <td>{{status}}</td>
+                        <td>{{editor.name}}</td>
+                        <td>{{reviewComment}}</td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Quản lý chuyên mục -->
+            <div class="manage-table" id="category-manage-1-table" style="display: block;">
+              <table table-striped border-success data-toggle="table" data-url="">
+                <thead>
+                  <tr>
+                    <th data-radio="true"></th>
+                    <th data-field="ordinalNumber">STT</th>
+                    <th data-field="category">Chuyên mục</th>
+                    <th data-field="numOfSubcategory">Số chuyên mục con</th>
+                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                    <th data-field="numOfView">Tổng số lượt xem</th>
+                    <th data-field="numOfComment">Tổng số bình luận</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each categories}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{this.name}}</td>
+                    <td>{{this.subcategoryCount}}</td>
+                    <td>{{SubCategories.articleCountBySubCat}}</td>
+                    <td>{{SubCategories.nViewCountBySubCat}}</td>
+                    <td>{{SubCategories.nCommentCountBySubCat}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+            <div class="manage-table" id="category-manage-2-table">
+              <table table-striped border-success data-toggle="table" data-url="">
+                <thead>
+                  <tr>
+                    <th data-radio="true"></th>
+                    <th data-field="ordinalNumber">STT</th>
+                    <th data-field="category">Chuyên mục</th>
+                    <th data-field="numOfSubcategory">Chuyên mục cấp 1</th>
+                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                    <th data-field="numOfView">Tổng số lượt xem</th>
+                    <th data-field="numOfComment">Tổng số bình luận</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each subcategories}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{Category.name}}</td>
+                    <td>{{nArticle}}</td>
+                    <td>{{nViewTotal}}</td>
+                    <td>{{nCommentTotal}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+            <!-- Quản lý nhãn -->
+            <div class="manage-table" id="tag-manage-table">
+              <table table-striped border-success data-toggle="table" data-url="">
+                <thead>
+                  <tr>
+                    <th data-radio="true"></th>
+                    <th data-field="ordinalNumber">STT</th>
+                    <th data-field="category">Nhãn</th>
+                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                    <th data-field="numOfView">Tổng số lượt xem</th>
+                    <th data-field="numOfComment">Tổng số bình luận</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each tags}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{nArticle}}</td>
+                    <td>{{nViewTotal}}</td>
+                    <td>{{nCommentTotal}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+            <!-- Quản lý người dùng -->
+            <div class="manage-table" id="user-manage-1-table">
+              <table table-striped border-success data-toggle="table" data-url="">
+                <thead>
+                  <tr>
+                    <th data-radio="true"></th>
+                    <th data-field="id">ID</th>
+                    <th data-field="name">Họ tên</th>
+                    <th data-field="email">Email</th>
+                    {{!-- <th data-field="numOfArticleInMonth">Số bài viết trong tháng</th> --}}
+                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each writers}}
+                  <tr>
+                    <td></td>
+                    <td>{{author.id}}</td>
+                    <td>{{author.name}}</td>
+                    <td>{{author.email}}</td>
+                    {{!-- <td></td> --}}
+                    <td>{{articleCount}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+            <div class="manage-table" id="user-manage-2-table">
+              <table table-striped border-success data-toggle="table" data-url="">
+                <thead>
+                  <tr>
+                    <th data-radio="true"></th>
+                    <th data-field="id">ID</th>
+                    <th data-field="name">Họ tên</th>
+                    <th data-field="email">Email</th>
+                    <th data-field="category">Chuyên mục phân công</th>
+                    <th data-field="numOfArticle">Tổng số bài viết</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each editors}}
+                  <tr>
+                    <td></td>
+                    <td>{{editor.id}}</td>
+                    <td>{{editor.name}}</td>
+                    <td>{{editor.email}}</td>
+                    <td>{{editor.assigned}}</td>
+                    <td>{{articleCount}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+            <div class="manage-table" id="user-manage-3-table">
+              <table table-striped border-success data-toggle="table" data-url="">
+                <thead>
+                  <tr>
+                    <th data-radio="true"></th>
+                    <th data-field="id">ID</th>
+                    <th data-field="name">Họ tên</th>
+                    <th data-field="email">Email</th>
+                    <th data-field="premiumDays">Premium</th>
+                    <th data-field="numOfLike">Số lượt thích</th>
+                    <th data-field="numOfComment">Số lượt bình luận</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each readers}}
+                  <tr>
+                    <td></td>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td>{{numOfPremDay}}</td>
+                    <td>{{likeCount}}</td>
+                    <td>{{commentCount}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<script>
+  function checkStatus() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const type = urlParams.get('type');
+    const subcat = urlParams.get('subcategory');
+    if (type) {
+      // Xoa cac section mac dinh
+      document.querySelectorAll("li.is-selected").forEach((item) => {
+        item.classList.remove("is-selected");
+      });
+      // Xoa table mac dinh, chon table 
+      document.querySelectorAll(".manage-table").forEach((table) => {
+        table.style.display = "none";
+      })
+      document.querySelector('#' + type + '-table').style.display = "block";
+      // Tim section va chon
+      item = document.querySelector(`li#${type}`);
+      item.classList.add("is-selected");
+      // Neu la section con thi chon them section cha
+      if (type[type.length - 1] >= '0' && type[type.length - 1] <= '9') {
+        item = document.querySelector(`li#${type.slice(0, -2)}`);
+        item.classList.add("is-selected");
+      }
+      // Sua body title
+      document.querySelector(".main h3").innerText = item.firstChild.innerText;
+    }
+    if (subcat && parseInt(subcat) > 0) {
+      document.querySelector(".nav-link.active").classList.remove("active");
+      tab = `.nav-link#tab-${parseInt(subcat)}`;
+      //<!-- Tam thoi, sua sau -->
+      switch (parseInt(subcat)) {
+        case 1:
+          tab = ".nav-link#tab-1";
+          break;
+        case 2:
+          tab = ".nav-link#tab-2";
+          break;
+        default:
+          tab = ".nav-link#all-tab";
+      }
+      document.querySelector(tab).classList.add("active");
+    }
+  }
+  window.addEventListener('hashchange', checkStatus);
+  window.addEventListener('popstate', checkStatus);
+  checkStatus();
+</script>
+<script src="/js/admin.js"></script>

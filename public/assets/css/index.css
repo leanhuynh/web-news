@@ -1,0 +1,37 @@
+/*Import font*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;800;900&family=Noto+Serif:wght@400;700&display=swap");
+
+/*Import các file css*/
+@import "base.css";
+@import "header.css";
+@import "form.css";
+@import "main.css";
+@import "user_pages.css";
+@import "premium.css";
+@import "homepage.css";
+@import "readcategory.css";
+@import "readtag.css";
+@import "search.css";
+@import "readnews.css";
+@import "readtag.css";
+
+.pagination {
+    display: inline-block;
+  }
+  
+  .pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+  }
+  
+  .pagination a.active {
+    background-color: var(--primary-color);
+    color: white;
+    border: 1px solid var(--primary-color);
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #ddd;}

@@ -1,0 +1,292 @@
+.form__sign-in-up {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("./../images/background-sign.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__container {
+  min-width: 500px;
+  height: auto;
+  background: white;
+  padding: 0 0 10px 0;
+  text-align: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form__container-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.form__name {
+  flex: 0 1;
+  font-size: 2.4rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  line-height: 3rem;
+  margin-bottom: 20px;
+}
+
+.form__input-box {
+  min-width: 300px;
+  padding: 20px 10px 10px 10px;
+}
+
+.form__input {
+  border: none;
+  border-bottom: 1px solid var(--primary-color);
+  min-width: 300px;
+  line-height: 1.6rem;
+  font-size: 1.4rem;
+}
+
+.form__input:focus {
+  outline: none;
+  border-bottom: 3px solid var(--primary-color);
+}
+
+.form__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+}
+
+.form__save-sign-in {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.form__save-sign-in span {
+  margin-left: 10px;
+}
+
+.form__forgot-password {
+  padding-right: 10px;
+}
+
+.form__btn {
+  width: 60%;
+  margin: 0 auto;
+  height: 30px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  color: white;
+  background: var(--primary-color);
+  margin: 10px 0;
+}
+
+.form__sign-in-up-another-title {
+  font-size: 1.2rem;
+  position: relative;
+  margin: 0 auto;
+  margin: 10px 0;
+}
+
+.form__sign-in-up-another-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form__sign-in-up-another-btn i {
+  font-size: 24px;
+  margin: 5px 30px;
+  color: #545454;
+  cursor: pointer;
+}
+
+.form__sign-in-up-another-btn .google:hover {
+  color: red;
+}
+
+.form__sign-in-up-another-btn .facebook:hover {
+  color: blue;
+}
+
+.form__sign-in-up-another-btn .apple:hover {
+  color: black;
+}
+
+.form__sign-in-up-another-btn i:first {
+  margin-left: 0;
+}
+
+.form__sign-in-up-signin {
+  font-size: 1.2rem;
+  margin: auto;
+}
+
+.form__sign-in-up-signin a {
+  font-size: 1.2rem;
+  padding-left: 3px;
+}
+
+.form__container-right {
+  position: relative;
+  padding: 0 0;
+}
+.form__container-right i {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 3rem;
+  line-height: 30px;
+  cursor: pointer;
+}
+
+.alert-toast {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  border-radius: 12px;
+  background: #fff;
+  padding: 15px 25px 15px 20px;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transform: translateX(calc(100% + 30px));
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+}
+
+.alert-toast.alert-active {
+  display: block;
+  transform: translateX(0%);
+}
+
+.alert-toast .alert-toast-content {
+  display: flex;
+  align-items: center;
+}
+
+.alert-toast-content .alert-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  min-width: 35px;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 50%;
+}
+
+.success {
+  background-color: #4070f4;
+}
+
+.info {
+  background-color: #d1ecf1;
+}
+
+.warning {
+  background-color: #f2a600;
+}
+
+.error {
+  background-color: #e41749;
+}
+
+.alert-toast-content .alert-message {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.alert-message .alert-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: #666666;
+}
+
+.alert-message .alert-text.alert-text-1 {
+  font-weight: 600;
+  color: #333;
+}
+
+.alert-toast .alert-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.alert-toast .alert-close:hover {
+  opacity: 1;
+}
+
+.alert-toast .alert-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+}
+
+.alert-toast .alert-progres-success:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #4070f4;
+}
+.alert-toast .alert-progres-info:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #d1ecf1;
+}
+.alert-toast .alert-progres-warning:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #f2a600;
+}
+.alert-toast .alert-progres-error:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #e41749;
+}
+
+.alert-progress.alert-active:before {
+  animation: alert-progress 5s linear forwards;
+}
+
+@keyframes alert-progress {
+  100% {
+    right: 100%;
+  }
+}
