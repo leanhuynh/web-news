@@ -78,10 +78,13 @@ http://localhost:5000/admin
 
 **Hình ảnh demo giao diện website**
 
-![Chức năng đăng kí gói PREMIUM](premium.png)
+-   Giao diện trang chủ
+    <img src="./index.png" width="" height="800">
 
-![Chức năng quản lí](manage.png)
+-   chức năng quản lí
+    <img src="./manage.png" width="" height="800">
 
-![Chức năng người dùng (đăng nhập, forgot-password, xem profile)](user.png)
+-   Chức năng người dùng (đăng nhập, forgot-password, xem profile, ...)
+    <img src="./user.png" width="" height="800">
 
 **Demo chức năng website**
