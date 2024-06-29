@@ -14,6 +14,8 @@
 
 -   Tìm kiếm bài viết theo keyword
 
+-   Xuất pdf với người dùng đăng kí gói PREMIUM
+
 **Công nghệ sử dụng**
 
 -   Nodejs
@@ -50,7 +52,7 @@ npm install
 
 -   Cập nhật các giá trị trong file môi trường `.env`
 
--   chạy trường trình, tạo database PosgreSQL
+-   Chạy trường trình, tạo database PosgreSQL
 
 ```bash
 http://localhost:5000/createTables
@@ -62,6 +64,24 @@ http://localhost:5000/createTables
 sequelize db:seed:all
 ```
 
+-   Link giao diện người dùng
+
+```bash
+http://localhost:5000
+```
+
+-   Link giao diện admin
+
+```bash
+http://localhost:5000/admin
+```
+
 **Hình ảnh demo giao diện website**
+
+![Chức năng đăng kí gói PREMIUM](premium.png)
+
+![Chức năng quản lí](manage.png)
+
+![Chức năng người dùng (đăng nhập, forgot-password, xem profile)](user.png)
 
 **Demo chức năng website**

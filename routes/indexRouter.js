@@ -1,8 +1,8 @@
-"use strict";
-const express = require("express");
+'use strict';
+const express = require('express');
 const router = express.Router();
 
-const controller = require("../controllers/indexController");
+const controller = require('../controllers/indexController');
 
 // TODO create table data
 // router.get("/createTables", (req, res) => {
@@ -16,23 +16,23 @@ const controller = require("../controllers/indexController");
 router.use(controller.getCategories);
 
 // routes
-router.get("/", controller.showHomepage);
+router.get('/', controller.showHomepage);
 
-router.get("/search", controller.search);
+router.get('/search', controller.search);
 
-router.get("/category", controller.showCategory);
+router.get('/category', controller.showCategory);
 
-router.get("/subCategory", controller.showSubCategory);
+router.get('/subCategory', controller.showSubCategory);
 
-router.get("/article", controller.showArticle);
+router.get('/article', controller.showArticle);
 
-router.post("/comment", controller.makeComment);
+router.post('/comment', controller.makeComment);
 
-router.delete("/comment", controller.deleteComment);
+router.delete('/comment', controller.deleteComment);
 
-router.get("/tag", controller.showTag)
+router.get('/tag', controller.showTag);
 
-router.get("/:page", controller.showPage);
+router.get('/:page', controller.showPage);
 
 // router.get("/tag/:tag", controller.showTag);
 

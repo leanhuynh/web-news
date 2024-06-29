@@ -235,6 +235,7 @@ app.post('/userread', async (req, res) => {
     res.json({ message: 'Yêu cầu POST đã được xử lý thành công!' });
 });
 
+// thêm dường dẫn (router)
 app.use('/admin', require('./routes/adminRouter'));
 app.use('/editor', require('./routes/editorRouter'));
 app.use('/writer', require('./routes/writerRouter'));

@@ -14,7 +14,7 @@
         {{#ifEquals typeAlert 'warning'}}Warning{{/ifEquals}}
         {{#ifEquals typeAlert 'error'}}Error{{/ifEquals}}
       </span>
-      
+
       <span class="alert-text alert-text-2">{{messageAlert}}</span>
     </div>
   </div>
@@ -29,14 +29,16 @@
 </div>
 <script>
   const toast = document.querySelector(".alert-toast"); const closeIcon =
-  document.querySelector(".alert-close"); const progress =
-  document.querySelector(".alert-progress"); let timer1, timer2;
+    document.querySelector(".alert-close"); const progress =
+      document.querySelector(".alert-progress"); let timer1, timer2;
   toast.classList.add("alert-active"); progress.classList.add("alert-active");
   timer1 = setTimeout(() => { toast.classList.remove("alert-active"); }, 5000);
   timer2 = setTimeout(() => { progress.classList.remove("alert-active"); },
-  5300); closeIcon.addEventListener("click", () => {
-  toast.classList.remove("alert-active"); setTimeout(() => {
-  progress.classList.remove("alert-active"); }, 300); clearTimeout(timer1);
-  clearTimeout(timer2); });
+    5300); closeIcon.addEventListener("click", () => {
+      toast.classList.remove("alert-active"); setTimeout(() => {
+        progress.classList.remove("alert-active");
+      }, 300); clearTimeout(timer1);
+      clearTimeout(timer2);
+    });
 
 </script>
